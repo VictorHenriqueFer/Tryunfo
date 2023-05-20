@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Form extends React.Component {
   render() {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage, cardRare,
-      cardTrunfo, hasTrunfo, isSaveButtonDisable, onInputChange } = this.props;
+      cardTrunfo, isSaveButtonDisable, onInputChange } = this.props;
     return (
       <form id="name">
         <label htmlFor="name">Nome da carta</label>
@@ -88,4 +89,18 @@ class Form extends React.Component {
     );
   }
 }
+
+Form.propTypes = {
+  cardName: PropTypes.string.isRequired,
+  cardDescription: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.string.isRequired,
+  cardAttr2: PropTypes.string.isRequired,
+  cardAttr3: PropTypes.string.isRequired,
+  cardImage: PropTypes.string.isRequired,
+  cardRare: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  cardTrunfo: PropTypes.bool.isRequired,
+  isSaveButtonDisable: PropTypes.bool.isRequired,
+};
+
 export default Form;
