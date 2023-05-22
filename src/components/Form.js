@@ -5,7 +5,7 @@ class Form extends React.Component {
   render() {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage, cardRare,
-      cardTrunfo, isSaveButtonDisable, onInputChange } = this.props;
+      cardTrunfo, isSaveButtonDisabled, onInputChange, onSaveButtonClick } = this.props;
     return (
       <form id="name">
         <label htmlFor="name">Nome da carta</label>
@@ -79,7 +79,7 @@ class Form extends React.Component {
         <button
           type="submit"
           data-testid="save-button"
-          disabled={ isSaveButtonDisable }
+          disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
         >
           Salvar
@@ -100,7 +100,8 @@ Form.propTypes = {
   cardRare: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  isSaveButtonDisable: PropTypes.bool.isRequired,
+  isSaveButtonDisabled: PropTypes.bool.isRequired,
+  onSaveButtonClick: PropTypes.func.isRequired,
 };
 
 export default Form;
