@@ -95,6 +95,15 @@ class App extends React.Component {
     });
   };
 
+  handleDeleteCard = (saveCards) => {
+    const deleteConfig = saveCards
+      .filter((saveCard) => saveCard.id !== deleteButton);
+
+    this.setState({
+      saveCards: deleteConfig,
+    });
+  };
+
   render() {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage, cardRare,
@@ -119,6 +128,16 @@ class App extends React.Component {
           onSaveButtonClick={ this.onSaveButtonClick }
 
         />
+        <Card
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
+        />
         {
           saveCards.map((saveCard) => (
             <li key={ saveCard.id }>
@@ -131,6 +150,7 @@ class App extends React.Component {
                 cardImage={ saveCard.cardImage }
                 cardRare={ saveCard.cardRare }
                 cardTrunfo={ saveCard.cardTrunfo }
+                deleteButton={ () => this.handleDeleteCard(saveCard.id) }
               />
             </li>
           ))
