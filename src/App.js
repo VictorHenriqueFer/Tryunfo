@@ -119,16 +119,22 @@ class App extends React.Component {
           onSaveButtonClick={ this.onSaveButtonClick }
 
         />
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-        />
+        {
+          saveCards.map((saveCard) => (
+            <li key={ saveCard.id }>
+              <Card
+                cardName={ saveCard.cardName }
+                cardDescription={ saveCard.cardDescription }
+                cardAttr1={ saveCard.cardAttr1 }
+                cardAttr2={ saveCard.cardAttr2 }
+                cardAttr3={ saveCard.cardAttr3 }
+                cardImage={ saveCard.cardImage }
+                cardRare={ saveCard.cardRare }
+                cardTrunfo={ saveCard.cardTrunfo }
+              />
+            </li>
+          ))
+        }
       </div>
     );
   }
