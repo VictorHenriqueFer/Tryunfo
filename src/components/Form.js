@@ -90,6 +90,7 @@ class Form extends React.Component {
           data-testid="save-button"
           disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
+          onChange={ onInputChange }
         >
           Salvar
 

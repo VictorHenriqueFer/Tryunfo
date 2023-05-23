@@ -13,7 +13,40 @@ class App extends React.Component {
     cardRare: '',
     cardTrunfo: false,
     hasTrunfo: false,
-    isSaveButtonDisabled: false,
+    isSaveButtonDisabled: true,
+  };
+
+  verificaValores = () => {
+    const { cardAttr1, cardAttr2, cardAttr3, cardName, cardDescription,
+      cardImage, cardRare } = this.state;
+    const valorMax = 90;
+    const numberMax = 210;
+    const nomeValido = cardName.length > 0;
+    const descriptionValida = cardDescription.length > 0;
+    const rareValida = cardRare.length > 0;
+    const imageValida = cardImage.length > 0;
+    const numberOneValido = Number(cardAttr1) >= 0 && Number(cardAttr1) <= valorMax;
+    const numberTwoValido = Number(cardAttr2) >= 0 && Number(cardAttr2) <= valorMax;
+    const numberThreeValido = Number(cardAttr3) >= 0 && Number(cardAttr3) <= valorMax;
+    const numberSoma = +(cardAttr1) + +(cardAttr2) + +(cardAttr3) <= numberMax;
+    if (
+      nomeValido
+       && descriptionValida
+       && rareValida
+       && imageValida
+       && numberOneValido
+       && numberTwoValido
+       && numberThreeValido
+       && numberSoma
+    ) {
+      this.setState({
+        isSaveButtonDisabled: false,
+      });
+    } else {
+      this.setState({
+        isSaveButtonDisabled: true,
+      });
+    }
   };
 
   onInputChange = ({ target }) => {
@@ -22,7 +55,7 @@ class App extends React.Component {
 
     this.setState({
       [name]: value,
-    });
+    }, () => this.verificaValores());
   };
 
   render() {
