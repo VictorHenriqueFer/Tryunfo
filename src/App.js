@@ -14,7 +14,7 @@ class App extends React.Component {
     cardTrunfo: false,
     hasTrunfo: false,
     isSaveButtonDisabled: true,
-    cards: [],
+    saveCards: [],
   };
 
   verificaValores = () => {
@@ -64,7 +64,7 @@ class App extends React.Component {
 
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage, cardRare,
-      cardTrunfo, hasTrunfo, cards } = this.state;
+      cardTrunfo, hasTrunfo, saveCards } = this.state;
 
     this.setState({
       cardName: '',
@@ -77,8 +77,8 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
-      cards: [
-        ...cards,
+      saveCards: [
+        ...saveCards,
         {
           cardImage,
           cardAttr1,
@@ -98,7 +98,9 @@ class App extends React.Component {
   render() {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage, cardRare,
-      cardTrunfo, hasTrunfo, isSaveButtonDisabled } = this.state;
+      cardTrunfo, isSaveButtonDisabled, saveCards } = this.state;
+
+    const hasTrunfoCard = saveCards.some((saveCard) => saveCard.cardTrunfo === true);
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -111,7 +113,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
-          hasTrunfo={ hasTrunfo }
+          hasTrunfo={ hasTrunfoCard }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
